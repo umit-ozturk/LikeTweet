@@ -12,8 +12,12 @@ from .models import Tweet
 
 #Retrieve
 
+
+
+
+### Functional based views. Actually functional based views not usefull. Therefore we will write Class Based Views at the next time.
 def tweet_detail_view(request, id=1):
-	obj = Tweet.objects.get(id=id)
+	obj = Tweet.objects.get(id=id) #Get from DATABASE
 	print(obj)
 	context = {
 		"object" : obj
