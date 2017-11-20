@@ -18,8 +18,10 @@ from .models import Tweet
 class TweetDetailView(DetailView):
 	queryset = Tweet.objects.all()
 
-	def get_object(self):
-		return Tweet.objects.get(id=1)
+	#pk = self.kwargs.get("pk")
+
+	#def get_object(self):
+	#	return Tweet.objects.get(id=pk )
 
 
 class TweetListView(ListView):
