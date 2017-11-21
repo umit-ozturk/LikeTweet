@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin # Dont using now
 from django.shortcuts import render, get_object_or_404
-from django.views.generic  import DetailView, ListView, CreateView
+from django.views.generic  import DetailView, ListView, CreateView, UpdateView
 
 from .forms import TweetModelForm
-from .mixins import FormUserNeededMixin
+from .mixins import FormUserNeededMixin, UserOwnerMixin
 from .models import Tweet
 # Create your views here.
 
@@ -12,12 +12,21 @@ from .models import Tweet
 class TweetCreateView(FormUserNeededMixin, CreateView): #LoginRequiredMixin importing class auto authenticated validation
 	form_class  = TweetModelForm
 	template_name = "tweets/create_view.html"
-	success_url = "/tweet/create" 
+	success_url = "/tweet/create/" 
 	#login_url = "/admin/". # About LoginRequiredMixin redirect to admin 
 
 
 
 #Update
+
+class TweetUpdateView(LoginRequiredMixin, UserOwnerMixin, UpdateView):
+	queryset = Tweet.objects.all()
+	form_class  = TweetModelForm
+	template_name = "tweets/update_view.html"
+	success_url = "/tweet/"
+
+
+
 
 #Delete
 
