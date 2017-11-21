@@ -8,7 +8,7 @@ class TweetModelForm(forms.ModelForm):
 		model = Tweet
 
 		fields = [
-			"user",
+			#"user",  ## Zaten login kullanıcı değiştiremes kendi username inide göremsine gerek yok.
 			"content"
 		]
 
