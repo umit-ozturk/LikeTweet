@@ -6,7 +6,6 @@ from .models import Tweet
 class TweetModelForm(forms.ModelForm):
 	class Meta:
 		model = Tweet
-
 		fields = [
 			#"user",  ## Zaten login kullanıcı değiştiremes kendi username inide göremsine gerek yok.
 			"content"
