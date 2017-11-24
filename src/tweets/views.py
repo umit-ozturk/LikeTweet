@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin # Dont using now
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic  import (
@@ -35,6 +36,16 @@ class TweetDetailView(DetailView):
 #List
 class TweetListView(ListView):
 	queryset = Tweet.objects.all()
+
+	def get_queryset(self, *args, **kwargs):
+		qs = Tweet.objects.all()
+		query = self.request.GET.get("q", None)
+		if query is not None:
+			qs = qs.filter(
+				Q(content__icontains=query) |
+				Q(user__username__icontains=query)
+				)
+		return qs
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(TweetListView, self).get_context_data(*args, **kwargs)
