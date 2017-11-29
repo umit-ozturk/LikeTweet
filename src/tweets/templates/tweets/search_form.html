@@ -1,7 +1,10 @@
+
 <form method="GET" action='{% url "tweet:list" %}'>
-	 <input class="form-control" type="text" name="q" placeholder="Search" value='{{ request.GET.q }}' />
+	 <input type="text" name="q" placeholder="Search" value='{{ request.GET.q }}' />
 	 <input type="submit" value="Search" />
-</form>
+</form>	
+
+
 
 <!--    Registartion and Auth
 <form class="form-inline">

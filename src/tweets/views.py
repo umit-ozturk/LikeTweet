@@ -36,9 +36,8 @@ class TweetDetailView(DetailView):
 #List
 class TweetListView(ListView):
 	queryset = Tweet.objects.all()
-
 	def get_queryset(self, *args, **kwargs):
-		qs = Tweet.objects.all()
+		qs = Tweet.objects.order_by('-timestamp')
 		query = self.request.GET.get("q", None)
 		if query is not None:
 			qs = qs.filter(
@@ -51,6 +50,9 @@ class TweetListView(ListView):
 		context = super(TweetListView, self).get_context_data(*args, **kwargs)
 		return context
 		
+
+##.  Functional View Not İmportant 
+
 def tweet_detail_view(request, pk=None):
 	obj = get_object_or_404(Tweet, pk=pk)
 	context = {
