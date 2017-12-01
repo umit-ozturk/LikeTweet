@@ -1,27 +1,6 @@
-
-<form method="GET" action='{% url "tweet:list" %}'>
-	 <input type="text" name="q" placeholder="Search" value='{{ request.GET.q }}' />
-	 <input type="submit" value="Search" />
-</form>	
-
-
-
-<!--    Registartion and Auth
-<form class="form-inline">
+<form class="navbar-form" role="search" method="GET" action='{% url "tweet:list" %}'>
 	<div class="form-group">
-		<label for="exampleInputName2">
-			Name
-		</label>
-		<input type="text" id="exampleInputName2" placeholder="Jane Doe">
-	</div>
-	<div class="form-group">
-		<label for="exampleInputEmail21">
-			Email
-		</label>
-		<input class="form-control" type="email" id="exampleInputEmail2" placeholder="JaneDoe@gmail.com" >
-
-		<button type="submit">Send invation</button>
-
-	</div>
+		<input class="form-control" type="text" name="q" placeholder="Your Search" value='{{ request.GET.q }}' />
+		</div>
+	<input class="btn btn-default" type="submit" value="Search" />
 </form>
--->
