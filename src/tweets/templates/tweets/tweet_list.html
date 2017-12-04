@@ -3,6 +3,34 @@
 {% block title %} LikeTweet | {{ block.super }} {% endblock title %}
 
 {% block content %}
+	{% for object in object_list %}
+	<div class="row">
+		<div class="col-sm-3 col-xs-12" style="background-color:#F50057;">
+			<h1>{{ object.user }}</h1>
+		</div>
+		<div class="col-sm-9">
+			{{ object.content }} <br>
+				via {{ object.user }} | {{ object.timestamp|timesince }} ago <a href="{{ object.get_absolute_url }}"> View </a>
+		</div>
+<hr>
+			{% empty %}
+				{% if request.GET.q %}
+					<p>No tweets found.</p>
+				{% else %}
+					<p>No tweets yet.</p>
+				{% endif %}
+			{% endfor %}
+		</div>	
+	</div>
+{% endblock content %}
+
+
+<!--
+{% extends "base.html" %}
+
+{% block title %} LikeTweet | {{ block.super }} {% endblock title %}
+
+{% block content %}
 
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
@@ -30,3 +58,7 @@
 		</div>	
 	</div>
 {% endblock content %}
+
+
+
+ -->
