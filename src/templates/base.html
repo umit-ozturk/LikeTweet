@@ -17,8 +17,9 @@
           {% endblock content %}
       </div>
 
-    <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->        
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    {% block script %}{% endblock script %}
     <script src="{% static 'js/bootstrap.js' %}"></script>
   </body>
 </html>

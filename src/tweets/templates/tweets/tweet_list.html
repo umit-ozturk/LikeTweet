@@ -1,8 +1,47 @@
 {% extends "base.html" %}
 
+{% block script %}
+<script>
+
+$(document).ready(function(){
+	console.log("working");
+
+	$.ajax({
+		url : "api/tweet/",
+		method : "GET",
+		success: function(data){
+			$.each(data, function(key, value){
+				console.log(key);
+				console.log(value.user);
+				console.log(value.content);
+				var tweetKey = key;
+				var tweetContent = value.content;
+				var tweetUser = value.user;
+				$("#tweet-container").append(
+					"<div class=\"media\"><div class=\"media-body\">" + tweetContent + "<br> via " + tweetUser.username + "|" + "<a href='#'> View </a>" + "</div></div><hr>"
+					)
+			})
+		},
+		error: function(data){
+			console.log(error);
+			console.log(data);
+		},
+
+	})
+
+})
+
+</script>
+
+
+{% endblock script %}
+
+
 {% block title %} LikeTweet | {{ block.super }} {% endblock title %}
 
 {% block content %}
+
+
 
 	<div class="row">
 		<div class="col-sm-3 col-xs-12 pull-left" style="background-color:#F50057;">
@@ -15,6 +54,9 @@
 				</div><br>
 				<hr/>
 			{% endif %}
+		<div id="tweet-container">
+
+		</div>
 	{% for object in object_list %}
 	<div class="row">
 		<div class="col-sm-3 col-xs-12" style="background-color:#F50057;">
