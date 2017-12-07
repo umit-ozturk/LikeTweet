@@ -17,6 +17,7 @@ function getParameterByName(name, url) {
 $(document).ready(function(){
 	var query = getParameterByName("q");
 	var tweetList = [];
+	var nextTweetUrl;
 
 
 
@@ -43,15 +44,28 @@ $(document).ready(function(){
 		}
 	}
 
-	function fetchTweets(){
+	function fetchTweets(url){
+		var fetchUrl;
+
+		if (!url){
+			fetchUrl = "/api/tweet/"
+		}else{
+			fetchUrl = url
+		}
+
 		$.ajax({
-			url : "/api/tweet/",
+			url : fetchUrl,
 			data : {
 				"q" : query,
 			},
 			method : "GET",
 			success: function(data){
-				tweetList = data
+				tweetList = data.results
+				if(data.next){
+					nextTweetUrl = data.next
+				}else{
+					$("#loadmore").hide()
+				}
 				parseTweet()
 			},
 			error: function(data){
@@ -61,6 +75,16 @@ $(document).ready(function(){
 	}
 
 	fetchTweets()
+
+
+
+	$("#loadmore").click(function(event){
+		event.preventDefault();
+		if(nextTweetUrl){
+			fetchTweets(nextTweetUrl)
+		}
+
+	})
 
 	var charsStart = 140;
 	var charsCurrent = 0;
@@ -147,6 +171,7 @@ $(document).ready(function(){
 		<div id="tweet-container">
 
 		</div>
+		<a id="loadmore" href=""> Load More </a>
 
 		</div>	
 	</div>

@@ -43,14 +43,12 @@
 
           searchInput.keydown(function(event){
               clearTimeout(typingTimer);
-
           })
 
           function doneSearchTyping(){
              if (searchQuery){
                 var url = '/tweet/search/?q=' + searchQuery;
                 document.location.href = url;
-
             }
           }
         })
