@@ -20,7 +20,6 @@ class UserDisplaySerializer(serializers.ModelSerializer):
 		]
 
 	def get_follower_count(self, obj):
-		print(obj.username)
 		return 0
 
 	def get_url(self, obj):
