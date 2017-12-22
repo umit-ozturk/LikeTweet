@@ -11,6 +11,7 @@ class UserProfileManager(models.Manager):
 	def all(self):
 		qs = self.get_queryset().all()
 		try:
+			print(qs)
 			if self.instance:
 				qs = qs.exclude(user=self.instance)
 				print(qs)
