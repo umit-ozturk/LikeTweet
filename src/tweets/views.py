@@ -21,7 +21,6 @@ from .models import Tweet
 class RetweetView(View):
 	def get(self, request, pk, *args, **kwargs):
 		tweet = get_object_or_404(Tweet, pk=pk)
-		print(pk + str(tweet))
 		if request.user.is_authenticated():
 			new_tweet = Tweet.objects.retweet(request.user, tweet)
 			return HttpResponseRedirect("/")
