@@ -43,7 +43,8 @@ $(document).ready(function(){
 			var currentHtml = $(this).html()
 			var newText;
 			newText = currentHtml.replace(hashtagRegex, "$1<a href='/tags/$2/'>#$2</a>")
-			newText = currentHtml.replace(usernameRegex, "$1 @<a href='/$2/'>$2</a>")
+			newText = newText.replace(usernameRegex, "$1 @<a href='/$2/'>$2</a>")
+
 			$(this).html(newText)
 		})
 	}
