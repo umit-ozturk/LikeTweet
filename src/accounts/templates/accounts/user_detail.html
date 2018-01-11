@@ -27,15 +27,7 @@ $(document).ready(function(){
 				{% if following %} Unfollow {% else %} Follow {% endif %}
 				</a>
 			</p>
-		</div>
-		<div class="col-sm-9 col-xs-12">
-			<h1>Tweets</h1>
-
-			<div id="tweet-container" data-url='/api/{{ object.username }}/tweet/'>
-
-			</div>
-			<a id="loadmore" href=""> Load More </a>
-
+			
 			<h1>Following <small>{{ object.profile.get_following.count }}</small></h1>
 
 			{% for user in object.profile.get_following %}
@@ -52,6 +44,16 @@ $(document).ready(function(){
 			{% empty %}
 				<h4>0</h4>
 			{% endfor %}
+		</div>
+		<div class="col-sm-9 col-xs-12">
+			<h1>Tweets</h1>
+
+			<div id="tweet-container" data-url='/api/{{ object.username }}/tweet/'>
+
+			</div>
+			<a id="loadmore" href=""> Load More </a>
+
+
 		</div>
 	</div>
 

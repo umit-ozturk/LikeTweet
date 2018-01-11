@@ -60,8 +60,11 @@
               method: "GET",
               url: url,
               success: function(data){
-                attachTweet(data, true, true)
-                updateHashLinks()
+
+                if (initalURL == "/api/tweet/"){
+                    attachTweet(data, true, true)
+                    updateHashLinks()
+                }
 
               },
               error: function(data){
