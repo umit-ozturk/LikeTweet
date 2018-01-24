@@ -28,7 +28,7 @@ $(document).ready(function(){
 		<div class="col-sm-9">
 			{% if not request.GET.q %}
 				<div class="">
-					{% include "tweets/form.html" with form=create_form action_url=create_url btn_title="Tweet" form_id="tweet-form" %}<br>
+					{% include "tweets/form.html" with form=create_form action_url=create_url btn_title="Tweet" form_class="tweet-form" %}<br>
 				</div><br>
 				<hr/>
 			{% endif %}
