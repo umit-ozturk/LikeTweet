@@ -11,10 +11,8 @@ class UserProfileManager(models.Manager):
 	def all(self):
 		qs = self.get_queryset().all()
 		try:
-			print(qs)
 			if self.instance:
 				qs = qs.exclude(user=self.instance)
-				print(qs)
 		except:
 			pass
 		return qs
@@ -59,7 +57,6 @@ class UserProfile(models.Model):
 		return reverse_lazy("profiles:detail", kwargs={"username":self.user.username})
 
 def post_save_user_receiver(sender, instance, created, *args, **kwargs):
-	print(instance)
 	if created:
 		new_profile = UserProfile.objects.get_or_create(user=instance)
 		#celery + redis
