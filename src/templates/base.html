@@ -41,7 +41,7 @@
         }
 
 
-        function loadTweetContainer(tweetContainerID){
+        function loadTweetContainer(tweetContainerID, fetch0neId){
           var query = getParameterByName("q");
           var tweetList = [];
           var nextTweetUrl;
@@ -222,9 +222,35 @@
             })
           }
 
-          fetchTweets()
+
+          function fetchSingle(fetch0neId){
+            var fetchDetailUrl = '/api/tweet/' + fetch0neId + '/'
+            $.ajax({
+              url : fetchDetailUrl,
+              method : "GET",
+              success: function(data){
+                tweetList = data.results
+                if(data.next){
+                  nextTweetUrl = data.next
+                }else{
+                  $("#loadmore").hide()
+                }
+                parseTweet()
+                updateHashLinks()
+              },
+              error: function(data){
+                console.log(error)
+              },
+            })
+          }
 
 
+          if(fetch0neId){
+              fetchSingle(fetch0neId)
+          }else{
+
+              fetchTweets()
+          }
 
           $("#loadmore").click(function(event){
             event.preventDefault();
