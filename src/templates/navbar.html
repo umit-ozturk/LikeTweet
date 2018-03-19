@@ -14,14 +14,28 @@
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <div class="col-sm-6 col-md-6">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Ana Sayfa</a></li>
-          <li><a href="#"> Contact</a></li>
-        </ul>
-    </div>
-    <div class="col-sm-4 col-md-4">
-        {% include "tweets/search_form.html" %}
-    </div>
+    {% if request.user.is_authenticated %}
+      <div class="col-sm-5 col-md-5">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="{{ request.user.profile.get_absolute_url }}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+      </div>
+      <div class="col-sm-4 col-md-4">
+          {% include "tweets/search_form.html" %}
+      </div>
+    {% else %}
+      <div class="col-sm-5 col-md-5">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+          </ul>
+      </div>
+      <div class="col-sm-4 col-md-4">
+          {% include "tweets/search_form.html" %}
+      </div>
+    {% endif %}
   </div><!-- /.navbar-collapse -->
 </nav>

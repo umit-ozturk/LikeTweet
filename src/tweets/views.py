@@ -46,7 +46,7 @@ class TweetDeleteView(LoginRequiredMixin, DeleteView):
 class TweetDetailView(DetailView):
 	queryset = Tweet.objects.all()
 #List
-class TweetListView(ListView):
+class TweetListView(LoginRequiredMixin, ListView):
 	queryset = Tweet.objects.all()
 	def get_queryset(self, *args, **kwargs):
 		qs = Tweet.objects.order_by('-timestamp')

@@ -11,13 +11,13 @@ class UserRegisterForm(forms.Form):
 	password2 = forms.CharField(label='Confrim Password', widget=forms.PasswordInput)
 
 
-	def clean_password2(self):
+	def clean_password(self):
 		password = self.cleaned_data.get("password")
 		password2 = self.cleaned_data.get("password2")
 
 		if password != password2:
 			raise form.ValidationError("Password Must Match")
-		return password2
+		return password
 
 	def clean_username(self):
 		username = self.cleaned_data.get("username")
