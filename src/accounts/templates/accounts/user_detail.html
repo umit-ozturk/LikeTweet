@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block title %} Tweet Detail | {{ block.super }} {% endblock title %}
 
 {% block script %}
@@ -44,6 +45,8 @@ $(document).ready(function(){
 			{% empty %}
 				<h4>0</h4>
 			{% endfor %}
+			</hr>
+
 		</div>
 		<div class="col-sm-9 col-xs-12">
 			<h1>Tweets</h1>

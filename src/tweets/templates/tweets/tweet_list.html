@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load recommended %}
 
 {% block script %}
 <script>
@@ -22,8 +23,12 @@ $(document).ready(function(){
 
 
 	<div class="row">
-		<div class="col-sm-3 col-xs-12 pull-left" style="background-color:#F50057;">
+		<div class="col-sm-3 col-xs-12 pull-left" >
 			<h1>{{ request.user }}</h1>
+			<br>
+		</hr>
+			<p class="lead">Recommended Users</p>
+				{% recommended request.user %}			
 		</div>
 		<div class="col-sm-9">
 			{% if not request.GET.q %}
