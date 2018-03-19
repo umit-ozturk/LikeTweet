@@ -50,6 +50,7 @@ class TweetListView(ListView):
 	queryset = Tweet.objects.all()
 	def get_queryset(self, *args, **kwargs):
 		qs = Tweet.objects.order_by('-timestamp')
+		print(type(qs))
 		query = self.request.GET.get("q", None)
 		if query is not None:
 			qs = qs.filter(

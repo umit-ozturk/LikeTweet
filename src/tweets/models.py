@@ -32,6 +32,7 @@ class TweetManager(models.Manager):
 				parent = og_parent,
 				user = user,
 				content = parent_obj.content,
+				reply = False,
 			)
 		obj.save()
 		return obj
